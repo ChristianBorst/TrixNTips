@@ -1,0 +1,22 @@
+Delete everything but the first number (comma separated)
+
+:%s - Substitute on every line
+! - Start pattern
+\( - Start a group
+[^,]* - Any number of non-comma characters
+\) - End the group
+\zs - Start pattern matching
+.* - Any characters
+! - End of pattern, start of replacement
+! - End of replacement
+
+Final command: :%s!\([^,]*\)\zs.*!!
+
+Delete the first < on every line:
+
+:%s - Substitute on every line
+/ - Begin match
+^< - Beginning of line, first character being <
+Don't put anything else to replace with nothing
+
+Final command: :%s\^<

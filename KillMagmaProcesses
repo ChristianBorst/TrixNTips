@@ -1,0 +1,21 @@
+ps -eafww //ps reports a snapshot of the current processes
+          //e selects all processes
+          //a selects all except both session leaders and non-terminal associated processes
+          //f does full format listing
+          //w does wide output, a second w provides unlimited width
+//Some of those options may not be the best ones to use
+-------------------------------------------------------------------------------------------
+grep USERNAME  //Filters for only the lines with the provided username
+-------------------------------------------------------------------------------------------
+grep magma.exe //Only some of the processes (the ones I actually wanted to kill) had .exe
+               //So filtering for those gives me the data that I actually want
+-------------------------------------------------------------------------------------------
+awk '{print $2}' //The process ids were in the second column, awk makes it easy to output
+                 // just the second column of input
+-------------------------------------------------------------------------------------------
+xargs kill  //xargs takes whatever you're piping in and supplies that as arguments to your
+            //specified process. In this case, I want to send the process ids to kill
+            //so that those processes will be killed
+-------------------------------------------------------------------------------------------
+Final command:
+ps -eafww | grep USERNAME | grep magma.exe | awk '{print $2}' | xargs kill

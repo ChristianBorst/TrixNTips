@@ -1,0 +1,27 @@
+To get the filename of a file, use:
+  //Remember to escape the double quotes if you're already in a string e.g. \"$0\"
+  `basename "$0"`
+
+----------------------------------------------------------------------------------
+Ways to do for loops:
+//Pretty standard. Put do after a semicolon or on the next line
+for x in 1 2 3 4 5; do
+
+done
+
+//Use any constants inside {x..y}
+for x in {1..5}
+do
+
+done
+
+//Use variables with the seq command
+//NOTE: $(...) creates a "subshell", this opens another process, 
+//executes it, and puts the output into your code instead of the $(...).
+//e.g. '$(echo "Hello")' will simply change to 'Hello' and '$(bc 1 + 2)' will change to '3'
+x=0
+y=20
+for i in $(seq $x $y)
+do
+
+done
