@@ -1,0 +1,50 @@
+When you need to enter data into a spreadsheet, it can be annoying to enter in each number
+Since google sheets supports adding entire columns at once, 
+here's an easy way to get individual columns of your data:
+
+1. Make sure your values are separated by something, like a comma or just a space
+  If you have <'s or >'s, you'll have to remove those. Here are some vim commands to do that:
+  First: open the file by running 'vim filename' in the terminal
+  Second: type these letters exactly
+    :%s/^<
+      Explanation: 
+        : - Run a vim command
+        %s - Replace something in every line
+        / - Marks the beginning of what to search for
+        ^ - Symbolizes the beginning of the line
+        < - The < character
+        Now vim is expecting another / to see what you want to replace with,
+        but you want to just remove the <, so ending here replaces with nothing
+  Third: To remove the >'s
+    :%s/>$
+      Explanation:
+        This is the same as before, but here there's >$ instead of ^<
+        > - The > character
+        $ - Symbolizes the end of a line
+        Similarly, there's nothing you want to replace with, so no extra /
+
+    Note: If you have multiple things (TOREMOVE) on the line which you want to remove 
+      and replace with something (TOREPLACEWITH), do:
+    :%s/TOREMOVE/TOREPLACEWITH/g
+      If you want to only replace some of them, use gc instead of g at the end. 
+        You'll then get an interactive prompt to hit y to replace, n to skip, a for all, and q for quit.
+
+2. You may need to sort your data. I don't know how to do this really well, 
+    but here's a pretty good way using the sort command:
+  Assume your numerical data is in columns and separated by commas (if separated by spaces, don't use the -t)
+    and that you want to sort by the second column
+  sort -g -k2 -t,
+    -g does general numeric sort, using -d instead works on strings
+    -k2 specifies the column to use, 2 being the second column
+    -t, defines the separator between columns. Here the comma is the separator. 
+        You must have only 1 character between your columns
+
+
+3. Now you want to get the individual columns that you wish to insert into google docs,
+   For this, we'll use the cut command
+
+  Example: cat FILENAME | cut -f1 -d,
+    -f1 specifies to print the first column
+    -d, says that the character between columns is a comma
+
+Now you can copy the entire column of data into google docs!
