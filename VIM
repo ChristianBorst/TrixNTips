@@ -1,3 +1,20 @@
+Record repetitive tasks:
+Vim enables recording by pressing:
+  1) q -To signal to begin recording mode
+  2) Any alphanumeric character - This character is what you will refer to the recorded commands with
+  3) A sequence of commands you wish to repeat
+  4) 1 -To signal to end recording mode
+In order to replay your recorded task, you simply press:
+  1) @ -To signal that you wish to replay a saved task
+  2) An alphanumeric character you previously recorded tasks with.
+
+Example:
+  Full recording command: qbwwwdwj0q
+  Full replay command:    @b
+  These commands save into the "register" 'b'.
+  Pressing @b will have vim skip three words, delete a word, then go to the beginning of the next line.
+
+-------------------------------------------------------
 Delete everything but the first number (comma separated)
 
 :%s - Substitute on every line
@@ -12,6 +29,7 @@ Delete everything but the first number (comma separated)
 
 Final command: :%s!\([^,]*\)\zs.*!!
 
+-------------------------------------------------------
 Delete the first < on every line:
 
 :%s - Substitute on every line
